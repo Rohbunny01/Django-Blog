@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Icono de la Pestaña-->
+		<link rel="icon" href="static/img/pandacss-icon.svg" type="image/x-icon" />
+
+		<!-- Google Fonts Lobster -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Tailwind Css -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<!-- Alpine Js -->
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+		></script>
+
+		<!-- Estilos Css Propio -->
+		<link rel="stylesheet" href="./static/css/style.css" />
+
+		<!-- Iconos -->
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+		></script>
+
+		<!-- Titulo de la Pagina -->
+		<title>PhotoMimic</title>
+
+		<!-- Estilos Css Tailwind -->
+		<style type="text/tailwindcss">
+			/* Estilos personalizados */
+			[x-cloak] {
+				display: none !important;
+			}
+
+			.navitems > li > a {
+				@apply h-12 px-4 hover:bg-gray-700 rounded-lg px-4 py-3 text-sm font-medium flex items-center gap-2;
+			}
+
+			.hoverlist > * {
+				@apply hover:bg-gray-100 rounded-md transition duration-150 my-2;
+			}
+
+			.hoverlist > * > a {
+				@apply flex items-center p-2 block;
+			}
+
+			.hightlight {
+				@apply !bg-indigo-100;
+			}
+
+			h1 {
+				font-size: 4rem;
+				line-height: 1.2;
+				font-weight: bold;
+				margin-bottom: 1rem;
+				font-family: var(--font1);
+			}
+
+			.button {
+				display: inline-flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				text-align: center;
+				border-radius: 0.5 rem;
+				cursor: pointer;
+				padding: 0 1rem;
+				padding-left: 1em;
+				min-height: 3.3rem;
+				font-weight: 600;
+				box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+				transition-property: transform;
+				transition-duration: 0.2s;
+				color: white;
+				background-color: var(--Secundario);
+			}
+
+			.button:hover {
+				background-color: var(--tulip-tree-500);
+			}
+
+			.button:active {
+				transform: scale (0.95);
+			}
+
+			.titleBlip {
+				animation: 1s fadeIn;
+			}
+
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				10% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+		</style>
+	</head>
+
+	<!-- Cuerpo de la Pagina -->
+	<body class="bg-gray-100">
+		<!-- Barra de navegacion -->
+		<header
+			x-data="{ mobilenavOpen: false }"
+			class="md:flex items-center justify-between [&>*]:px-8 bg-gray-800 h-20 text-white sticky top-0 z-50"
+		>
+			<!-- Mobile Responsive div -->
+			<div class="flex items-center justify-between h-20">
+				<!-- Logo -->
+				<logo>
+					<a href="./base.html" class="flex-shrink-0 flex items-center gap-1">
+						<img
+							class="h-8 w-8 mr-2"
+							src="static/img/pandacss-icon.svg"
+							alt="Logo-Photomimic"
+						/>
+						<span>PhotoMimic</span>
+					</a>
+				</logo>
+				<!-- Fin Logo -->
+
+				<!-- Icono de Menu -->
+				<mobileicon class="md:hidden">
+					<a
+						@click="mobilenavOpen = !mobilenavOpen"
+						class="h-12 w-12 flex items-center justify-content cursor-pointer hover:bg-gray-700 rounded-lg"
+					>
+						<ion-icon
+							x-show="!mobilenavOpen"
+							name="menu-outline"
+							class="h-8 w-8 select-none"
+						></ion-icon>
+
+						<ion-icon
+							x-show="mobilenavOpen"
+							x-cloak
+							name="close-circle-outline"
+							class="h-8 w-8 select-none"
+						></ion-icon>
+					</a>
+				</mobileicon>
+				<!-- Fin Icono de Menu -->
+			</div>
+
+			<!-- Barra de navegacion con Links -->
+			<nav
+				x-show="mobilenavOpen"
+				x-cloak
+				class="md:!block bg-gray-800 h-screen w-screen md:h-auto md:w-auto -mt-20 md:mt-0 absolute md:relative z-[-1]"
+				x-transition:enter="duration-300 ease-out"
+				x-transition:enter-start="opacity-0 -translate-y-96"
+				x-transition:enter-end="opacity-100 translate-y-0"
+			>
+				<ul
+					class="flex items-center gap-2 navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0"
+				>
+					<li><a href="#" class="">Home</a></li>
+					<li><a href="#" class="">Create Post</a></li>
+					<li x-data="{ dropdownOpen: false }" class="relative"
+						><a
+							@click="dropdownOpen = !dropdownOpen"
+							href="#"
+							class="cursor-pointer select-none"
+							@click.away="dropdownOpen = false"
+						>
+							<img
+								class="h-8 w-8 rounded-full objetc-cover bg-white"
+								src="./static/img/person-circle-outline.svg"
+								alt="User"
+							/>
+							<span class="">User</span>
+							<img
+								x-show="!dropdownOpen"
+								x-cloak
+								x-transition:enter="duration-300 ease-out"
+								x-transition:enter-start="opacity-0 -translate-y-5 transform scale-90"
+								x-transition:enter-end="opacity-100 translate-y-0 transform scale-100"
+								x-transition:leave="duration-300 ease-in"
+								x-transition:leave-start="opacity-100 translate-y-0 transform scale-100"
+								x-transition:leave-end="opacity-0 -translate-y-5 transform scale-90"
+								x-bind:class="{ dropdownOpen : 'rotate-180' }"
+								src="./static/img/caret-down-outline.svg"
+								alt="expand-arrow-down"
+								class="w-4 h-4 ml-2 object-cover bg-gray-200 rounded-full"
+							/>
+						</a>
+
+						<!-- Dropdown -->
+						<div
+							x-show="dropdownOpen"
+							x-cloak
+							class="absolute right-0 bg-white text-black shadow rounded-lg w-40 p-2 z-20"
+							x-transition:enter="duration-300 ease-out"
+							x-transition:enter-start="opacity-0 -translate-y-5 transform scale-90"
+							x-transition:enter-end="opacity-100 translate-y-0 transform scale-100"
+						>
+							<ul class="hoverlist [&>li>a]:justify-end">
+								<li><a href="">Mi Perfil</a></li>
+								<li><a href="">Salir</a></li>
+							</ul>
+						</div>
+						<!-- Fin Dropdown -->
+					</li>
+				</ul>
+			</nav>
+			<!-- Fin Barra de navegacion con Links -->
+		</header>
+
+		<!-- Hero -->
+		<hero
+			class="grid bg-gray-300 text-white text-center bg-bottom bg-no-repeat bg-cover bg-[url('/static/img/mar.jpg')]"
+		>
+			<div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-40 w-full h-full"></div>
+			<!-- Contenido del Hero -->
+			<div class="col-start-1 row-start-1 py-24 px-10">
+				<h1 class="text-6xl text-white font-bold titleBlip">PhotoMimic</h1>
+				<p class="text-xl text-white-600 font-bold mb-10">A simple photo sharing app</p>
+				<!-- Boton de Sign Up -->
+				<a class="button text-white font-bold py-2 px-4 rounded-full w-[10%]" href=""
+					>Sign up</a
+				>
+			</div>
+			<!-- Fin Contenido del Hero -->
+		</hero>
+
+		<!-- Contenedor Principal -->
+		<content class="grid grid-cols-3 max-w-7xl mx-auto mt-6">
+			<!-- Main Content-->
+			<main class="col-span-2 mx-[10%]">
+				<!-- Post -->
+				<article class="card">
+					<!-- Header Titulo -->
+					<div class="flex items-center justify-between px-4 h-14">
+						<h3 class="text-xl font-bold w-[50%] truncate">Titulo</h3>
+						<div class="text-sm text-gray-500"
+							>User @
+							<a class="hover:underline" href="" target="_blank">Jhon Doe</a>
+						</div>
+					</div>
+					<!-- Fin Header Titulo -->
+
+					<!-- Div Imagen -->
+					<figure>
+						<a href="">
+							<img
+								class="w-full h-[50%] object-cover"
+								src="./static/img/pajarito.jpg"
+								alt="imagen"
+							/>
+						</a>
+					</figure>
+					<!-- Fin Div Imagen -->
+
+					<!-- Div Pie de Foto -->
+					<div class="p-4 pb-2">
+						<a class="flex items-center gap-1 mb-4 px-4" href="">
+							<img
+								class="w-9 h-9 rounded-full object-cover bg-white mr-2 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-110 text-gray-500 hover:bg-gray-300"
+								src="/static/img/person-circle-outline.svg"
+								alt="perfil"
+							/>
+							<span class="font-bold hover:underline">User</span>
+						</a>
+						<p class="text-5xl mb-10 px-4 font1">foto de un gatito con una manta...</p>
+
+						<!-- Etiquetas -->
+						<div class="flex items-center gap-2 text-sm mb-5">
+							<a
+								class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white"
+								href=""
+								>Animales</a
+							>
+							<a
+								class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-500 hover:text-white"
+								href=""
+								>Cute</a
+							>
+						</div>
+						<!-- fin Etiquetas -->
+
+						<!-- Comentarios y Likes -->
+						<div class="flex items-center justify-between text-sm px-2">
+							<a class="font-bold hover:underline" href=""
+								>Cometarios<span class="font-light text-gray-500 ml-2">3</span></a
+							>
+							<div class="flex items-center gap-5 [&>a:hover]:underline">
+								<div class="flex gap-2 items-center">
+									<img class="w-6 h-7" src="static/img/heart-outline.svg" alt="hearth" />
+									1
+								</div>
+								<a href="">Likes</a>
+								<a href="">Edit</a>
+								<a href="">Delete</a>
+							</div>
+						</div>
+						<!-- Fin Comentarios y Likes -->
+					</div>
+					<!-- Fin Div Pie de Foto -->
+				</article>
+			</main>
+
+			<!-- SideBar -->
+			<aside class="col-span-1 mr-[20%]">
+				<!-- Buscador Categorias -->
+				<section class="card p-4">
+					<h2 class="h2 mb-4">Categorías</h2>
+					<ul class="hoverlist">
+						<li class="hightlight"
+							><a href="">
+								<img class="w-8 h-8 object-cover mr-2" src="static/img/landscape.svg" />
+								<span class="font-bold text-sm">Paisaje</span></a
+							></li
+						>
+						<li class=""
+							><a href="">
+								<img
+									class="w-8 h-8 object-cover mr-2"
+									src="static/img/people-outline.svg"
+								/>
+								<span class="font-bold text-sm">Personas</span></a
+							></li
+						>
+						<li class=""
+							><a href="">
+								<img
+									class="w-8 h-8 object-cover mr-2"
+									src="https://img.icons8.com/small/96/null/dog.png"
+								/>
+								<span class="font-bold text-sm">Animales</span></a
+							></li
+						>
+						<li class=""
+							><a href="">
+								<img
+									class="w-8 h-8 object-cover mr-2"
+									src="https://img.icons8.com/small/96/null/collage.png"
+								/>
+								<span class="font-bold text-sm">Abstracto</span></a
+							></li
+						>
+						<li class=""
+							><a href="">
+								<img
+									class="w-8 h-8 object-cover mr-2"
+									src="https://img.icons8.com/small/96/null/180-degrees.png"
+								/>
+								<span class="font-bold text-sm">Blanco y Negro</span></a
+							></li
+						>
+					</ul>
+				</section>
+				<!--Fin Buscador de Categorias -->
+
+				<!-- Top Photos -->
+				<section class="card p-4">
+					<h2 class="h2 mb-4">Top Photos</h2>
+					<ul class="hoverlist">
+						<!-- top 1 -->
+						<li
+							><a href="">
+								<img
+									class="w-10 h-10 rounded-lg object-cover mr-3"
+									src="https://live.staticflickr.com/65535/50618365686_36f887ab88_c.jpg"
+								/>
+								<img
+									class="w-6 h-6 rounded-full object-cover mr-0.5"
+									src="static/img/person-circle-outline.svg"
+									alt="perfil"
+								/>
+								<span class="font-bold text-sm mr-1">Name User</span>
+								<span class="font-light text-sm text-grey-500">(5 Likes)</span>
+							</a>
+						</li>
+
+						<li
+							><a href="">
+								<img
+									class="w-10 h-10 rounded-lg object-cover mr-3"
+									src="https://live.staticflickr.com/65535/50618365686_36f887ab88_c.jpg"
+								/>
+								<img
+									class="w-6 h-6 rounded-full object-cover mr-0.5"
+									src="static/img/person-circle-outline.svg"
+									alt="perfil"
+								/>
+								<span class="font-bold text-sm mr-1">Name User</span>
+								<span class="font-light text-sm text-grey-500">(5 Likes)</span>
+							</a>
+						</li>
+					</ul>
+				</section>
+				<!-- Fin Top Photos -->
+
+				<!-- Top Captions -->
+				<section class="card p-4">
+					<h2 class="h2 mb-4">Top Captions</h2>
+					<ul class="hoverlist">
+						<!-- top 1 -->
+						<li
+							><a href="">
+								<img
+									class="w-8 h-8 rounded-full object-cover mr-1"
+									src="static/img/person-circle-outline.svg"
+									alt="perfil"
+								/>
+								<span class="font-bold text-sm mr-1">Name User</span>
+								<span class="font-light text-sm text-grey-500">(5 Likes)</span>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</aside>
+		</content>
+	</body>
+</html>

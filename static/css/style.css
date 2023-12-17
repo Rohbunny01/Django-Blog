@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
+
+:root {
+	/* Colores de la paleta Azul */
+	--primary: rgb(88, 40, 244);
+	--blue-50: #f3f2ff;
+	--blue-100: #e9e8ff;
+	--blue-200: #d6d4ff;
+	--blue-300: #b8b2ff;
+	--blue-400: #9586ff;
+	--blue-500: #7256fc;
+	--blue-600: #5828f4;
+	--blue-700: #5221e0;
+	--blue-800: #451bbc;
+	--blue-900: #3a189a;
+	--blue-950: #210c69;
+
+	/* Colores de la paleta Azul Oscuro */
+	--primary-hover: #451dc8;
+	--dark-blue-50: #f3f3ff;
+	--dark-blue-100: #e8e8ff;
+	--dark-blue-200: #d5d4ff;
+	--dark-blue-300: #b6b2ff;
+	--dark-blue-400: #9387fe;
+	--dark-blue-500: #6f56fc;
+	--dark-blue-600: #5c33f4;
+	--dark-blue-700: #4d21e0;
+	--dark-blue-800: #451dc8;
+	--dark-blue-900: #37189a;
+	--dark-blue-950: #1f0d68;
+
+	/* Colores de la paleta Principal */
+	--Principal: #ff6b6b;
+	--carnation-50: #fff1f1;
+	--carnation-100: #ffe1e1;
+	--carnation-200: #ffc7c7;
+	--carnation-300: #ffa0a0;
+	--carnation-400: #ff6b6b;
+	--carnation-500: #f83b3b;
+	--carnation-600: #e51d1d;
+	--carnation-700: #c11414;
+	--carnation-800: #a01414;
+	--carnation-900: #841818;
+	--carnation-950: #480707;
+
+	/* Colores de la paleta Fondo */
+	--Fondo: #fdfefe;
+	--white-50: #fdfefe;
+	--white-100: #eaf4f4;
+	--white-200: #d0e7e6;
+	--white-300: #a7d2cf;
+	--white-400: #78b8b2;
+	--white-500: #57a09a;
+	--white-600: #448581;
+	--white-700: #386c69;
+	--white-800: #315b59;
+	--white-900: #2d4d4c;
+	--white-950: #1e3333;
+
+	/* Colores de la paleta Texto */
+	--Texto: #2c3e50;
+	--pickled-bluewood-50: #f5f7fa;
+	--pickled-bluewood-100: #eaeff4;
+	--pickled-bluewood-200: #cfdce8;
+	--pickled-bluewood-300: #a6bfd3;
+	--pickled-bluewood-400: #759cbb;
+	--pickled-bluewood-500: #5480a3;
+	--pickled-bluewood-600: #416788;
+	--pickled-bluewood-700: #35526f;
+	--pickled-bluewood-800: #2f475d;
+	--pickled-bluewood-900: #2c3e50;
+	--pickled-bluewood-950: #1d2834;
+
+	/* Colores de la paleta Secundario */
+	/*Secundario: #F7B731 - Un amarillo dorado para botones y enlaces.*/
+	--Secundario: #f7b731;
+	--tulip-tree-50: #fffaeb;
+	--tulip-tree-100: #fdf0c8;
+	--tulip-tree-200: #fbe08c;
+	--tulip-tree-300: #f8ca51;
+	--tulip-tree-400: #f7b731;
+	--tulip-tree-500: #f09310;
+	--tulip-tree-600: #d56e0a;
+	--tulip-tree-700: #b14c0c;
+	--tulip-tree-800: #8f3b11;
+	--tulip-tree-900: #763211;
+	--tulip-tree-950: #441704;
+
+	/* Colores de la paleta Resaltado */
+	/*Resaltado: #C56CF0 - Un púrpura brillante para notificaciones y elementos destacados.*/
+	--Resaltado: #c56cf0;
+	--heliotrope-50: #fbf6fe;
+	--heliotrope-100: #f6e9fe;
+	--heliotrope-200: #efd7fd;
+	--heliotrope-300: #e3b8fa;
+	--heliotrope-400: #d18af6;
+	--heliotrope-500: #c56cf0;
+	--heliotrope-600: #ad3de0;
+	--heliotrope-700: #962bc5;
+	--heliotrope-800: #7e28a1;
+	--heliotrope-900: #662281;
+	--heliotrope-950: #470c5f;
+
+	/*Font*/
+	--font1: 'Lobster Two', sans-serif;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	position: relative;
+	border-radius: 1rem;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+	margin-bottom: 2rem;
+	background-color: white;
+	padding-bottom: 1rem;
+}
+
+.font1 {
+	font-family: var(--font1), sans-serif;
+}
+
+.h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+	line-height: 2rem;
+	margin-bottom: 0.75 rem;
+}
+
