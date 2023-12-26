@@ -1,4 +1,4 @@
-# Nombre del Proyecto - Proyecto con Django tipo blog como instagram
+# Nombre del Proyecto - Proyecto con Django tipo blog como instagramM
 
 Este proyecto utiliza las siguientes tecnologías:
 
