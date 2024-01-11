@@ -20,8 +20,6 @@
 			href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&display=swap"
 			rel="stylesheet"
 		/>
-		<!-- Tailwind Css -->
-		<script src="https://cdn.tailwindcss.com"></script>
 
 		<!-- Alpine Js -->
 		<script
@@ -30,7 +28,7 @@
 		></script>
 
 		<!-- Estilos Css Propio -->
-		<link rel="stylesheet" href="./static/css/style.css" />
+		<link rel="stylesheet" href="./tailwind/tailwind.css" />
 
 		<!-- Iconos -->
 		<script
@@ -42,84 +40,11 @@
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
 		></script>
 
+		<!-- Estilos Css Propio -->
+		<link rel="stylesheet" href="style.min.css" />
+
 		<!-- Titulo de la Pagina -->
 		<title>PhotoMimic</title>
-
-		<!-- Estilos Css Tailwind -->
-		<style type="text/tailwindcss">
-			/* Estilos personalizados */
-			[x-cloak] {
-				display: none !important;
-			}
-
-			.navitems > li > a {
-				@apply h-12 px-4 hover:bg-gray-700 rounded-lg px-4 py-3 text-sm font-medium flex items-center gap-2;
-			}
-
-			.hoverlist > * {
-				@apply hover:bg-gray-100 rounded-md transition duration-150 my-2;
-			}
-
-			.hoverlist > * > a {
-				@apply flex items-center p-2 block;
-			}
-
-			.hightlight {
-				@apply !bg-indigo-100;
-			}
-
-			h1 {
-				font-size: 4rem;
-				line-height: 1.2;
-				font-weight: bold;
-				margin-bottom: 1rem;
-				font-family: var(--font1);
-			}
-
-			.button {
-				display: inline-flex;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: center;
-				flex-shrink: 0;
-				text-align: center;
-				border-radius: 0.5 rem;
-				cursor: pointer;
-				padding: 0 1rem;
-				padding-left: 1em;
-				min-height: 3.3rem;
-				font-weight: 600;
-				box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
-				transition-property: transform;
-				transition-duration: 0.2s;
-				color: white;
-				background-color: var(--Secundario);
-			}
-
-			.button:hover {
-				background-color: var(--tulip-tree-500);
-			}
-
-			.button:active {
-				transform: scale (0.95);
-			}
-
-			.titleBlip {
-				animation: 1s fadeIn;
-			}
-
-			@keyframes fadeIn {
-				0% {
-					opacity: 0;
-				}
-				10% {
-					opacity: 0;
-				}
-				100% {
-					opacity: 1;
-				}
-			}
-		</style>
 	</head>
 
 	<!-- Cuerpo de la Pagina -->
@@ -233,7 +158,7 @@
 
 		<!-- Hero -->
 		<hero
-			class="grid bg-gray-300 text-white text-center bg-bottom bg-no-repeat bg-cover bg-[url('/static/img/mar.jpg')]"
+			class="grid bg-gray-300 text-white text-center bg-bottom bg-no-repeat bg-cover z-10 relative bg-[url('/static/img/mar.jpg')]"
 		>
 			<div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-40 w-full h-full"></div>
 			<!-- Contenido del Hero -->
@@ -241,7 +166,7 @@
 				<h1 class="text-6xl text-white font-bold titleBlip">PhotoMimic</h1>
 				<p class="text-xl text-white-600 font-bold mb-10">A simple photo sharing app</p>
 				<!-- Boton de Sign Up -->
-				<a class="button text-white font-bold py-2 px-4 rounded-full w-[10%]" href=""
+				<a class="button text-white font-bold py-2 px-4 rounded-xl w-[25%]" href=""
 					>Sign up</a
 				>
 			</div>
@@ -249,9 +174,27 @@
 		</hero>
 
 		<!-- Contenedor Principal -->
-		<content class="grid grid-cols-3 max-w-7xl mx-auto mt-6">
+		<content
+			x-data="{ mobileSidebarOpen: false }"
+			class="grid grid-cols-3 max-w-7xl mx-auto mt-6"
+		>
+			<mobileSidebarNav class="md:hidden col-span-full mx-auto mb-6 z-10 relative">
+				<a
+					@click="mobileSidebarOpen = !mobileSidebarOpen"
+					class="flex items-center cursor-pointer select-none font-bold hover:bg-gray-200 rounded-lg p-3"
+				>
+					<span>Categorias</span>
+					<img
+						class="w-4 ml-1.5"
+						x-bind:class="{ 'rotate-180 duration-300' : mobileSidebarOpen }"
+						src="https://img.icons8.com/small/32/000000/expand-arrow.png"
+						alt=""
+					/>
+				</a>
+			</mobileSidebarNav>
+
 			<!-- Main Content-->
-			<main class="col-span-2 mx-[10%]">
+			<main class="col-span-full md:col-span-2 mx-[5%] md:mx-[10%] order-2 md:order-1">
 				<!-- Post -->
 				<article class="card">
 					<!-- Header Titulo -->
@@ -325,7 +268,16 @@
 			</main>
 
 			<!-- SideBar -->
-			<aside class="col-span-1 mr-[20%]">
+			<aside
+				x-show="mobileSidebarOpen"
+				x-cloak
+				class="md:!block col-span-full md:col-span-1 mx-[5%] md:mr-[20%] order-1 md:order-2"
+				x-transition:
+				enter="duration-300 ease-out"
+				x-transition:
+				enter-start="opacity-0 -mt-96"
+				x-transition:enter-end="opacity-100 mt-0"
+			>
 				<!-- Buscador Categorias -->
 				<section class="card p-4">
 					<h2 class="h2 mb-4">Categorías</h2>
